@@ -32,6 +32,9 @@ int imprime_historograma(int** vendas,int num_categorias){
        printf("%d ",*vendas[i]);
        if(*vendas[i]>0){
         for(int j=0;j<*vendas[i];j++){
+              if(*vendas[i]==0){
+                    printf("%d\n",*vendas[i]);
+              }
              printf("*");
         }
        }
