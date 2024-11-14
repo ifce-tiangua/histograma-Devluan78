@@ -14,6 +14,9 @@ int main(){
         vendas[i] = (int*)malloc(sizeof(int));
 
         scanf("%d",vendas[i]);
+          if(*vendas == NULL){
+                printf("vazio");
+            }
      }
 
      imprime_historograma(vendas,num_categorias);
@@ -34,8 +37,6 @@ int imprime_historograma(int** vendas,int num_categorias){
         for(int j=0;j<*vendas[i];j++){
             if(*vendas==0){
                 printf("%d\n",*vendas[i]);
-            }if(*vendas == NULL){
-                printf("vazio");
             }
              printf("*");
         }
