@@ -1,47 +1,61 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int imprime_historograma(int** vendas,int num_categorias);
+void preenche_histrograma(char *h[], int valor, int categoria)
+{
+    for (int i = 0; i < valor; i++)
+    {
+        h[categoria][i] = '*';
+    }
+}
 
-int main(){
+void imprimir_histograma(char *h[], int valores[], int categorias)
+{
+    if(categorias==0){
+        printf("vazio");
+        return;
+    }
+    for (int i = 0; i < categorias; i++)
+    {
+        printf("%d ", valores[i]);
 
-      int num_categorias;
-      scanf("%d",&num_categorias);
-    
-     int **vendas = (int**)malloc(num_categorias*sizeof(int*));
+        for (int j = 0; j < valores[i]; j++)
+        {
+            printf("%c", h[i][j]);
+        }
 
-     for(int i = 0;i<num_categorias;i++){
-        vendas[i] = (int*)malloc(sizeof(int));
+        printf("\n");
+    }
+}
 
-        scanf("%d",vendas[i]);
-     }
+int main()
+{
 
-     imprime_historograma(vendas,num_categorias);
+    int categorias;
+    scanf("%d", &categorias);
 
-     for(int i=0;i<num_categorias;i++){
-         free(vendas[i]);
-     }
-      free(vendas);
+    int valores[categorias];
+    char *histrograma[categorias];
+
+    for (int i = 0; i < categorias; i++)
+    {
+        scanf("%d", &valores[i]);
+        if (valores[i] == 0)
+        {
+            histrograma[i] = NULL;
+        }
+        else
+        {
+            histrograma[i] = (char *)malloc(valores[i] * sizeof(char));
+            preenche_histrograma(histrograma, valores[i], i);
+        }
+    }
+
+    imprimir_histograma(histrograma, valores, categorias);
+
+    for(int i = 0; i<categorias ;i++){
+        free(histrograma[i]);
+    }
 
     return 0;
-}
-int imprime_historograma(int** vendas,int num_categorias){
-      if(num_categorias == 0){
-            printf('vazio');
-            return;
-      }
-
-   int i;
-   for(i=0;i<num_categorias;i++){
-       printf("%d ",*vendas[i]);
-       if(*vendas[i]>0){
-        for(int j=0;j<*vendas[i];j++){
-            if(*vendas==0){
-                printf("%d\n",*vendas[i]);
-            }
-             printf("*");
-        }
-       }
-       printf("\n");
-   }
 }
