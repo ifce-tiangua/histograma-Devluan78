@@ -14,7 +14,7 @@ int main(){
         vendas[i] = (int*)malloc(sizeof(int));
 
         scanf("%d",vendas[i]);
-          if(*vendas == NULL){
+          if(vendas[i] == NULL){
                 printf("vazio");
             }
      }
